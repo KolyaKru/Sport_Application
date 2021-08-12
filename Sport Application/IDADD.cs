@@ -22,14 +22,94 @@ namespace Sport_Application
             InitializeComponent();
         }
 
-        private void scannerButton1_CheckedChanged(object sender, EventArgs e)
+        private bool COM8()
         {
-
+            try
+            {
+                if (serialPort1.PortName != "COM8")
+                {
+                    serialPort1.Close();
+                    serialPort1.PortName = "COM8";
+                    serialPort1.Open();
+                    return true;
+                }
+                else
+                {
+                    if (serialPort1.PortName == "COM8")
+                    {
+                        serialPort1.Close();
+                        serialPort1.PortName = "COM8";
+                        serialPort1.Open();
+                        return true;
+                    }
+                    else { return false; }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Оборудование не подключено! Доступен режим ручного ввода", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ex.Message, "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return false;
+            }
         }
 
-        private void scannerButton2_CheckedChanged(object sender, EventArgs e)
+        private bool COM3()
         {
+            try
+            {
+                if (serialPort1.PortName != "COM3")
+                {
+                    serialPort1.Close();
+                    serialPort1.PortName = "COM3";
+                    serialPort1.Open();
+                    return true;
+                }
+                else
+                {
+                    if (serialPort1.PortName == "COM3")
+                    {
+                        serialPort1.Close();
+                        serialPort1.PortName = "COM3";
+                        serialPort1.Open();
+                        return true;
+                    }
+                    else { return false; }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Оборудование не подключено! Доступен режим ручного ввода", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ex.Message, "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return false;
+            }
+        }
 
+        private void scannerButton1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (COM3())
+                {
+                    MessageBox.Show("Приложите карту к устройству ввода");
+                    numberBox.Text = "";
+                    idBox.Text = "";
+                }
+            }
+            catch { }
+        }
+
+        private void scannerButton2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (COM8())
+                {
+                    MessageBox.Show("Приложите карту к устройству ввода");
+                    numberBox.Text = "";
+                    idBox.Text = "";
+                }
+            }
+            catch { }
         }
 
         private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)

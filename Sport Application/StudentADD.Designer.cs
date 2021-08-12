@@ -158,7 +158,7 @@
             this.scannerButton2.TabStop = true;
             this.scannerButton2.Text = "Сканер №2";
             this.scannerButton2.UseVisualStyleBackColor = true;
-            this.scannerButton2.CheckedChanged += new System.EventHandler(this.scannerButton2_CheckedChanged);
+            this.scannerButton2.Click += new System.EventHandler(this.scannerButton2_Click);
             // 
             // idBox
             // 
@@ -217,7 +217,7 @@
             this.scannerButton1.TabStop = true;
             this.scannerButton1.Text = "Сканер №1";
             this.scannerButton1.UseVisualStyleBackColor = true;
-            this.scannerButton1.CheckedChanged += new System.EventHandler(this.scannerButton1_CheckedChanged);
+            this.scannerButton1.Click += new System.EventHandler(this.scannerButton1_Click);
             // 
             // minimizeBox
             // 

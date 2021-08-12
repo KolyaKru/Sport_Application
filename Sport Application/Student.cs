@@ -120,11 +120,11 @@ namespace Sport_Application
                                 $"AND Дата BETWEEN CONVERT (datetime, '{startDate}') AND CONVERT (datetime, '{finishDate}') " +
                                 $"AND Объект = '{obj}'";
 
-            SqlConnection con = new SqlConnection(connectionString);
+            SqlConnection connectdb = new SqlConnection(connectionString);
 
-            con.Open();
+            connectdb.Open();
 
-            SqlCommand hourscom = new SqlCommand(inputHours, con);
+            SqlCommand hourscom = new SqlCommand(inputHours, connectdb);
 
             int hours = Convert.ToInt32(hourscom.ExecuteScalar());
 
@@ -178,19 +178,19 @@ namespace Sport_Application
         {
             try
             {
+                SqlConnection connectdb = new SqlConnection(connectionString);
+
                 string inserthours = $"INSERT INTO Дневник(СтудНомер, Дата, Направление, Объект, УСР, ОтрабЧасы) " +
                     $"VALUES('{numstud}', CONVERT (datetime, '{DateTime.Now}'), '{way}', " +
                     $"'{obj}', '{usr}', {hours})";
 
-                SqlConnection con = new SqlConnection(connectionString);
+                SqlCommand com = new SqlCommand(inserthours,connectdb);
 
-                SqlCommand com = new SqlCommand(inserthours, con);
-
-                con.Open();
+                connectdb.Open();
 
                 com.ExecuteNonQuery();
 
-                con.Close();
+                connectdb.Close();
 
                 MessageBox.Show("Сохранение прошло успешно!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -198,11 +198,13 @@ namespace Sport_Application
         }
         public void InsertClient(string number, string id, string name, string group)
         {
-            ReturnConnect().Open();
+            SqlConnection connectdb = new SqlConnection(connectionString);
+
+            connectdb.Open();
 
             string checkquery = $"Select COUNT(СтудНомер) FROM Студенты Where СтудНомер = '{number}' OR ФИО_Студ = '{name}'";
 
-            SqlCommand checkcommand = new SqlCommand(checkquery, ReturnConnect());
+            SqlCommand checkcommand = new SqlCommand(checkquery, connectdb);
 
             if (Convert.ToInt32(checkcommand.ExecuteScalar()) == 0)
             {
@@ -211,55 +213,49 @@ namespace Sport_Application
                                          $"INSERT INTO Студенты(СтудНомер, СтудНомер2, ФИО_Студ, КодГруппы) "+
                                          $"VALUES('{number}', '{id}', '{name}', CONVERT(int, @numb))";
 
-                SqlCommand addcommand = new SqlCommand(addstudentquery, ReturnConnect());
+                SqlCommand addcommand = new SqlCommand(addstudentquery, connectdb);
 
                 addcommand.ExecuteNonQuery();
 
-                ReturnConnect().Close();
+                connectdb.Close();
 
                 MessageBox.Show("Добавление студента прошло успешно!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }
             else
             {
-                ReturnConnect().Close();
+                connectdb.Close();
                 MessageBox.Show("Проверьте введённые данные.\nВозможно такой студент уже существует!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         public void InsertID(string id, string number)
         {
+            SqlConnection connectdb = new SqlConnection(connectionString);
+
             string checkquery = $"SELECT COUNT(СтудНомер) FROM Студенты WHERE СтудНомер = '{number}'";
 
-            ReturnConnect().Open();
+            connectdb.Open();
 
-            SqlCommand checkcommand = new SqlCommand(checkquery, ReturnConnect());
+            SqlCommand checkcommand = new SqlCommand(checkquery, connectdb);
 
             if (checkcommand.ExecuteScalar() != null)
             {
                 string com = $"UPDATE Студенты SET СтудНомер2 = '{id}' WHERE СтудНомер = '{number}'";
 
-                SqlCommand command = new SqlCommand(com, ReturnConnect());
-
-                ReturnConnect().Open();
+                SqlCommand command = new SqlCommand(com, connectdb);
 
                 command.ExecuteNonQuery();
 
-                ReturnConnect().Close();
+                connectdb.Close();
 
                 MessageBox.Show("Добавление id студенческого билета прошло успешно!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
+                connectdb.Close();
                 MessageBox.Show("Проверьте номер студенческого билета \nВозможно такой студент не зарегестрирован!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        public SqlConnection ReturnConnect()
-        {
-            SqlConnection connectdb = new SqlConnection(connectionString);
-
-            return connectdb;
         }
 
         public void Check(string s)

@@ -18,6 +18,10 @@ namespace Sport_Application
 {
     public partial class StudentADD : Form
     {
+        string connectionString = @"Data Source=TOSHIBA;" +
+                    "Integrated Security = SSPI;" +
+                    "Initial Catalog = sportapp";
+
         Student stud = new Student();
 
         public StudentADD()
@@ -102,12 +106,8 @@ namespace Sport_Application
         private void addStudentButton_Click(object sender, EventArgs e)
         {
             stud.InsertClient(numberBox.Text, idBox.Text, nameBox.Text, groupNumberBox.Text);
-            //numberBox.Text = "";
-            //nameBox.Text = "";
-            //groupNumberBox.Text = "";
-            //addStudentButton.Enabled = false;
-            //groupNumberBox.Enabled = false;
-            //this.Close();
+            serialPort1.Close();
+            this.Close();
         }
 
         private void numberBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -167,11 +167,13 @@ namespace Sport_Application
 
                 }).Start();
 
+                SqlConnection connectdb = new SqlConnection(connectionString);
+
                 string com = $"SELECT СтудНомер FROM Студенты WHERE СтудНомер2 = '{idCard}'";
 
-                SqlCommand command = new SqlCommand(com, stud.ReturnConnect());
+                SqlCommand command = new SqlCommand(com, connectdb);
 
-                stud.ReturnConnect().Open();
+                connectdb.Open();
 
                 new Thread(() =>
                 {
@@ -183,6 +185,8 @@ namespace Sport_Application
                 }).Start();
 
                 this.numberBox.TextChanged += this.numberBox_TextChanged;
+
+                connectdb.Close();
             }
             catch { }
         }
@@ -191,33 +195,36 @@ namespace Sport_Application
         {
             try
             {
+                SqlConnection connectdb = new SqlConnection(connectionString);
 
                 string namequery = $"SELECT ФИО_Студ FROM Студенты WHERE СтудНомер = '{numberBox.Text}'";
 
-                SqlCommand commanddb = new SqlCommand(namequery, stud.ReturnConnect());
+                SqlCommand commanddb = new SqlCommand(namequery, connectdb);
 
-                stud.ReturnConnect().Open();
+                connectdb.Open();
 
                 nameBox.Text = ((string)commanddb.ExecuteScalar());
 
-                stud.ReturnConnect().Close();
+                connectdb.Close();
 
                 string numbgroupquery = $"SELECT Группа FROM Студенты join Группы ON Студенты.КодГруппы = Группы.КодГруппы WHERE СтудНомер = '{numberBox.Text}'";
 
-                stud.ReturnConnect().Open();
+                connectdb.Open();
 
-                SqlCommand command1 = new SqlCommand(numbgroupquery, stud.ReturnConnect());
+                SqlCommand command1 = new SqlCommand(numbgroupquery, connectdb);
 
                 groupNumberBox.Text = ((string)command1.ExecuteScalar());
 
                 numberBox.TextChanged += numberBox_TextChanged;
+
+                connectdb.Close();
             }
 
             catch { }
 
         }
 
-        private void scannerButton2_CheckedChanged(object sender, EventArgs e)
+        private void scannerButton2_Click(object sender, EventArgs e)
         {
             try
             {
@@ -231,7 +238,7 @@ namespace Sport_Application
             catch { }
         }
 
-        private void scannerButton1_CheckedChanged(object sender, EventArgs e)
+        private void scannerButton1_Click(object sender, EventArgs e)
         {
             try
             {

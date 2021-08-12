@@ -15,6 +15,10 @@ namespace Sport_Application
 {
     public partial class Form1 : Form
     {
+        string connectionString = @"Data Source=TOSHIBA;" +
+                    "Integrated Security = SSPI;" +
+                    "Initial Catalog = sportapp";
+
         Student stud = new Student();
 
         string namestud;
@@ -81,7 +85,7 @@ namespace Sport_Application
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private bool IsNum(string s)
@@ -96,6 +100,7 @@ namespace Sport_Application
 
         private void sendButton_Click(object sender, EventArgs e)
         {
+
             if (namestud != null && group != null)
             {
                 if (inputBox.Text != "" && IsNum(selectObjectBox.Text) != true && IsNum(selectTimeBox.Text) != false)
@@ -175,9 +180,11 @@ namespace Sport_Application
                                    $"AND Дата BETWEEN CONVERT (datetime, '{startDate}') AND CONVERT (datetime, '{finishDate}')) " +
                                    $"SELECT @sum";
 
-            SqlCommand commanddb = new SqlCommand(hourssemquery, stud.ReturnConnect());
+            SqlConnection connectdb = new SqlConnection(connectionString); 
 
-            stud.ReturnConnect().Open();
+            SqlCommand commanddb = new SqlCommand(hourssemquery, connectdb);
+
+            connectdb.Open();
 
             int allhourssem = Convert.ToInt32(commanddb.ExecuteScalar());
 
@@ -185,12 +192,12 @@ namespace Sport_Application
 
             string input = $"SELECT ФИО_Студ FROM Студенты WHERE СтудНомер = '{inputBox.Text}'";
 
-            commanddb = new SqlCommand(input, stud.ReturnConnect());
+            commanddb = new SqlCommand(input, connectdb);
 
             string inputgr = $"SELECT Группа FROM Студенты JOIN Группы " +
                     $"ON Студенты.КодГруппы = Группы.КодГруппы WHERE СтудНомер = '{inputBox.Text}'";
 
-            SqlCommand commanddb2 = new SqlCommand(inputgr, stud.ReturnConnect());
+            SqlCommand commanddb2 = new SqlCommand(inputgr, connectdb);
 
             namestud = (string)commanddb.ExecuteScalar();
 
@@ -215,13 +222,13 @@ namespace Sport_Application
                               $"AND Объект = 'ПСМ'";
             }
 
-            SqlCommand hoursobjcom = new SqlCommand(hoursobj, stud.ReturnConnect());
+            SqlCommand hoursobjcom = new SqlCommand(hoursobj, connectdb);
 
             int hours = Convert.ToInt32(hoursobjcom.ExecuteScalar());
 
             hoursObjectBox.Text = hours.ToString();
 
-            stud.ReturnConnect().Close();
+            connectdb.Close();
         }
 
         private void selectTimeBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -290,6 +297,7 @@ namespace Sport_Application
         {
             try
             {
+
                 string idCard = serialPort1.ReadLine();
 
                 int startIndex = idCard.IndexOf("[") + 1;
@@ -298,11 +306,13 @@ namespace Sport_Application
 
                 idCard = idCard.Substring(startIndex, endIndex - startIndex);
 
+                SqlConnection connectdb = new SqlConnection(connectionString);
+
                 string studnumbquery = $"SELECT СтудНомер FROM Студенты WHERE СтудНомер2 = '{idCard}'";
 
-                SqlCommand commanddb = new SqlCommand(studnumbquery, stud.ReturnConnect());
+                SqlCommand commanddb = new SqlCommand(studnumbquery, connectdb);
 
-                stud.ReturnConnect().Open();
+                connectdb.Open();
 
                 if (commanddb.ExecuteScalar() != null)
                 {
@@ -318,9 +328,12 @@ namespace Sport_Application
                 else
                 {
                     IDADD idAdd = new IDADD();
+                    idAdd.ShowDialog();
                 }
                 
                 this.inputBox.TextChanged += this.inputBox_TextChanged;
+
+                connectdb.Close();
 
                 }
             catch { }
