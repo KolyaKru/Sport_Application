@@ -1,0 +1,65 @@
+F:\Проекты\Sport Application\Sport Application\bin\Debug\Sport Application.exe.config
+F:\Проекты\Sport Application\Sport Application\bin\Debug\Sport Application.exe
+F:\Проекты\Sport Application\Sport Application\bin\Debug\Sport Application.pdb
+F:\Проекты\Sport Application\Sport Application\obj\Debug\Sport Application.csprojAssemblyReference.cache
+F:\Проекты\Sport Application\Sport Application\obj\Debug\Sport_Application.Properties.Resources.resources
+F:\Проекты\Sport Application\Sport Application\obj\Debug\Sport Application.csproj.GenerateResource.cache
+F:\Проекты\Sport Application\Sport Application\obj\Debug\Sport Application.csproj.CoreCompileInputs.cache
+F:\Проекты\Sport Application\Sport Application\obj\Debug\Sport Application.exe
+F:\Проекты\Sport Application\Sport Application\obj\Debug\Sport Application.pdb
+F:\Проекты\Sport Application\Sport Application\obj\Debug\Sport_Application.Form1.resources
+D:\Проекты\Sport App For University\Sport Application\Sport Application\bin\Debug\Sport Application.exe.config
+D:\Проекты\Sport App For University\Sport Application\Sport Application\bin\Debug\Sport Application.exe
+D:\Проекты\Sport App For University\Sport Application\Sport Application\bin\Debug\Sport Application.pdb
+D:\Проекты\Sport App For University\Sport Application\Sport Application\obj\Debug\Sport Application.csprojAssemblyReference.cache
+D:\Проекты\Sport App For University\Sport Application\Sport Application\obj\Debug\Sport_Application.Form1.resources
+D:\Проекты\Sport App For University\Sport Application\Sport Application\obj\Debug\Sport_Application.Properties.Resources.resources
+D:\Проекты\Sport App For University\Sport Application\Sport Application\obj\Debug\Sport Application.csproj.GenerateResource.cache
+D:\Проекты\Sport App For University\Sport Application\Sport Application\obj\Debug\Sport Application.csproj.CoreCompileInputs.cache
+D:\Проекты\Sport App For University\Sport Application\Sport Application\obj\Debug\Sport Application.exe
+D:\Проекты\Sport App For University\Sport Application\Sport Application\obj\Debug\Sport Application.pdb
+C:\Users\Tosya Artyomova\Desktop\Sport-Application-master - копия\Sport-Application-master\Sport Application\bin\Debug\Sport Application.exe.config
+C:\Users\Tosya Artyomova\Desktop\Sport-Application-master - копия\Sport-Application-master\Sport Application\bin\Debug\Sport Application.exe
+C:\Users\Tosya Artyomova\Desktop\Sport-Application-master - копия\Sport-Application-master\Sport Application\bin\Debug\Sport Application.pdb
+C:\Users\Tosya Artyomova\Desktop\Sport-Application-master - копия\Sport-Application-master\Sport Application\obj\Debug\Sport Application.csprojAssemblyReference.cache
+C:\Users\Tosya Artyomova\Desktop\Sport-Application-master - копия\Sport-Application-master\Sport Application\obj\Debug\Sport_Application.Form1.resources
+C:\Users\Tosya Artyomova\Desktop\Sport-Application-master - копия\Sport-Application-master\Sport Application\obj\Debug\Sport_Application.Properties.Resources.resources
+C:\Users\Tosya Artyomova\Desktop\Sport-Application-master - копия\Sport-Application-master\Sport Application\obj\Debug\Sport Application.csproj.GenerateResource.cache
+C:\Users\Tosya Artyomova\Desktop\Sport-Application-master - копия\Sport-Application-master\Sport Application\obj\Debug\Sport Application.csproj.CoreCompileInputs.cache
+C:\Users\Tosya Artyomova\Desktop\Sport-Application-master - копия\Sport-Application-master\Sport Application\obj\Debug\Sport Application.exe
+C:\Users\Tosya Artyomova\Desktop\Sport-Application-master - копия\Sport-Application-master\Sport Application\obj\Debug\Sport Application.pdb
+C:\Users\Tosya Artyomova\Desktop\Sport-Application-master\Sport-Application-master\Sport Application\bin\Debug\Sport Application.exe.config
+C:\Users\Tosya Artyomova\Desktop\Sport-Application-master\Sport-Application-master\Sport Application\bin\Debug\Sport Application.exe
+C:\Users\Tosya Artyomova\Desktop\Sport-Application-master\Sport-Application-master\Sport Application\bin\Debug\Sport Application.pdb
+C:\Users\Tosya Artyomova\Desktop\Sport-Application-master\Sport-Application-master\Sport Application\obj\Debug\Sport Application.csprojAssemblyReference.cache
+C:\Users\Tosya Artyomova\Desktop\Sport-Application-master\Sport-Application-master\Sport Application\obj\Debug\Sport_Application.Form1.resources
+C:\Users\Tosya Artyomova\Desktop\Sport-Application-master\Sport-Application-master\Sport Application\obj\Debug\Sport_Application.Properties.Resources.resources
+C:\Users\Tosya Artyomova\Desktop\Sport-Application-master\Sport-Application-master\Sport Application\obj\Debug\Sport Application.csproj.GenerateResource.cache
+C:\Users\Tosya Artyomova\Desktop\Sport-Application-master\Sport-Application-master\Sport Application\obj\Debug\Sport Application.csproj.CoreCompileInputs.cache
+C:\Users\Tosya Artyomova\Desktop\Sport-Application-master\Sport-Application-master\Sport Application\obj\Debug\Sport Application.exe
+C:\Users\Tosya Artyomova\Desktop\Sport-Application-master\Sport-Application-master\Sport Application\obj\Debug\Sport Application.pdb
+C:\Users\Tosya Artyomova\Desktop\Sport-Application-master\Sport-Application-master\Sport Application\obj\Debug\Sport_Application.Report.resources
+C:\Users\Tosya Artyomova\Desktop\Sport-Application-master\Sport-Application-master\Sport Application\obj\Debug\Sport_Application.StudentADD.resources
+D:\Downloads\Sport-Application-Tosya\Sport Application\bin\Debug\Sport Application.exe.config
+D:\Downloads\Sport-Application-Tosya\Sport Application\obj\Debug\Sport Application.exe
+D:\Downloads\Sport-Application-Tosya\Sport Application\obj\Debug\Sport Application.pdb
+D:\Downloads\Sport-Application-Tosya\Sport Application\bin\Debug\Sport Application.exe
+D:\Downloads\Sport-Application-Tosya\Sport Application\bin\Debug\Sport Application.pdb
+D:\Downloads\Sport-Application-Tosya\Sport Application\obj\Debug\Sport Application.csprojResolveAssemblyReference.cache
+D:\Downloads\Sport-Application-Tosya\Sport Application\obj\Debug\Sport_Application.Form1.resources
+D:\Downloads\Sport-Application-Tosya\Sport Application\obj\Debug\Sport_Application.Properties.Resources.resources
+D:\Downloads\Sport-Application-Tosya\Sport Application\obj\Debug\Sport_Application.Report.resources
+D:\Downloads\Sport-Application-Tosya\Sport Application\obj\Debug\Sport_Application.StudentADD.resources
+D:\Downloads\Sport-Application-Tosya\Sport Application\obj\Debug\Sport Application.csproj.GenerateResource.Cache
+D:\Downloads\Sport Application Last\Sport Application\bin\Debug\Sport Application.exe.config
+D:\Downloads\Sport Application Last\Sport Application\obj\Debug\Sport Application.exe
+D:\Downloads\Sport Application Last\Sport Application\obj\Debug\Sport Application.pdb
+D:\Downloads\Sport Application Last\Sport Application\bin\Debug\Sport Application.exe
+D:\Downloads\Sport Application Last\Sport Application\bin\Debug\Sport Application.pdb
+D:\Downloads\Sport Application Last\Sport Application\obj\Debug\Sport Application.csprojResolveAssemblyReference.cache
+D:\Downloads\Sport Application Last\Sport Application\obj\Debug\Sport_Application.Form1.resources
+D:\Downloads\Sport Application Last\Sport Application\obj\Debug\Sport_Application.Properties.Resources.resources
+D:\Downloads\Sport Application Last\Sport Application\obj\Debug\Sport_Application.Report.resources
+D:\Downloads\Sport Application Last\Sport Application\obj\Debug\Sport_Application.StudentADD.resources
+D:\Downloads\Sport Application Last\Sport Application\obj\Debug\Sport Application.csproj.GenerateResource.Cache
+D:\Downloads\Sport Application Last\Sport Application\obj\Debug\Sport_Application.IDADD.resources
