@@ -302,6 +302,7 @@
             this.panelTypeInput.Name = "panelTypeInput";
             this.panelTypeInput.Size = new System.Drawing.Size(374, 36);
             this.panelTypeInput.TabIndex = 17;
+            this.panelTypeInput.Visible = false;
             // 
             // scannerButton2
             // 

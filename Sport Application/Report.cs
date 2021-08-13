@@ -42,11 +42,6 @@ namespace Sport_Application
             ReportTablet(dateTimePicker1.Value.ToString("yyyy-MM-dd 00:00:00"), dateTimePicker2.Value.ToString("yyyy-MM-dd 23:59:59"));
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
             ReportTablet(dateTimePicker1.Value.ToString("yyyy-MM-dd 00:00:00"), dateTimePicker2.Value.ToString("yyyy-MM-dd 23:59:59"));

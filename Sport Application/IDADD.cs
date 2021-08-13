@@ -135,13 +135,24 @@ namespace Sport_Application
             catch { }
         }
 
-        private void addStudentButton_Click(object sender, EventArgs e)
+        private void addIDButton_Click(object sender, EventArgs e)
         {
             try
             {
                 stud.InsertID(idBox.Text, numberBox.Text);
             }
             catch { }
+        }
+
+        private void numberBox_TextChanged(object sender, EventArgs e)
+        {
+            addIDButton.Enabled = true;
+        }
+
+        private void closeBox_Click(object sender, EventArgs e)
+        {
+            serialPort1.Close();
+            this.Close();
         }
     }
 }

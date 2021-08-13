@@ -46,9 +46,8 @@
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.idStudentLabel = new System.Windows.Forms.Label();
             this.scannerButton1 = new System.Windows.Forms.RadioButton();
-            this.minimizeBox = new System.Windows.Forms.PictureBox();
             this.closeBox = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.minimizeBox)).BeginInit();
+            this.handButton = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.closeBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -115,13 +114,13 @@
             // 
             // numberBox
             // 
+            this.numberBox.Enabled = false;
             this.numberBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.numberBox.Location = new System.Drawing.Point(132, 129);
             this.numberBox.Name = "numberBox";
             this.numberBox.Size = new System.Drawing.Size(276, 26);
             this.numberBox.TabIndex = 6;
             this.numberBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.numberBox.TextChanged += new System.EventHandler(this.numberBox_TextChanged);
             this.numberBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.numberBox_KeyPress);
             // 
             // nameBox
@@ -145,7 +144,7 @@
             this.groupNumberBox.Name = "groupNumberBox";
             this.groupNumberBox.Size = new System.Drawing.Size(276, 28);
             this.groupNumberBox.TabIndex = 9;
-            this.groupNumberBox.SelectedIndexChanged += new System.EventHandler(this.selectObjectBox_SelectedIndexChanged);
+            this.groupNumberBox.SelectedIndexChanged += new System.EventHandler(this.groupNumberBox_SelectedIndexChanged);
             // 
             // scannerButton2
             // 
@@ -219,17 +218,6 @@
             this.scannerButton1.UseVisualStyleBackColor = true;
             this.scannerButton1.Click += new System.EventHandler(this.scannerButton1_Click);
             // 
-            // minimizeBox
-            // 
-            this.minimizeBox.BackgroundImage = global::Sport_Application.Properties.Resources.free_icon_minimize_tab_71766;
-            this.minimizeBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.minimizeBox.Location = new System.Drawing.Point(485, 9);
-            this.minimizeBox.Name = "minimizeBox";
-            this.minimizeBox.Size = new System.Drawing.Size(20, 20);
-            this.minimizeBox.TabIndex = 17;
-            this.minimizeBox.TabStop = false;
-            this.minimizeBox.Click += new System.EventHandler(this.minimizeBox_Click);
-            // 
             // closeBox
             // 
             this.closeBox.BackgroundImage = global::Sport_Application.Properties.Resources.cross;
@@ -241,12 +229,25 @@
             this.closeBox.TabStop = false;
             this.closeBox.Click += new System.EventHandler(this.closeBox_Click);
             // 
+            // handButton
+            // 
+            this.handButton.AutoSize = true;
+            this.handButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.handButton.Location = new System.Drawing.Point(12, 72);
+            this.handButton.Name = "handButton";
+            this.handButton.Size = new System.Drawing.Size(104, 28);
+            this.handButton.TabIndex = 17;
+            this.handButton.TabStop = true;
+            this.handButton.Text = "Вручную";
+            this.handButton.UseVisualStyleBackColor = true;
+            this.handButton.Click += new System.EventHandler(this.handButton_Click);
+            // 
             // StudentADD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(543, 339);
-            this.Controls.Add(this.minimizeBox);
+            this.Controls.Add(this.handButton);
             this.Controls.Add(this.closeBox);
             this.Controls.Add(this.scannerButton1);
             this.Controls.Add(this.scannerButton2);
@@ -269,7 +270,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Добавить студента";
             this.Load += new System.EventHandler(this.StudentADD_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.minimizeBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.closeBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -295,6 +295,6 @@
         private System.Windows.Forms.Label idStudentLabel;
         private System.Windows.Forms.RadioButton scannerButton1;
         private System.Windows.Forms.PictureBox closeBox;
-        private System.Windows.Forms.PictureBox minimizeBox;
+        private System.Windows.Forms.RadioButton handButton;
     }
 }

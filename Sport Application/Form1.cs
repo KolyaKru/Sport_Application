@@ -15,12 +15,7 @@ namespace Sport_Application
 {
     public partial class Form1 : Form
     {
-        string connectionString = @"Data Source=TOSHIBA;" +
-                    "Integrated Security = SSPI;" +
-                    "Initial Catalog = sportapp";
-
         Student stud = new Student();
-
         string namestud;
         string group;
 
@@ -104,9 +99,7 @@ namespace Sport_Application
             if (namestud != null && group != null)
             {
                 if (inputBox.Text != "" && IsNum(selectObjectBox.Text) != true && IsNum(selectTimeBox.Text) != false)
-                {
-                    Student stud = new Student();
-
+                 {
                     if (usrButton.Checked == true)
                     {
                         stud.Insert(inputBox.Text, selectTypeBox.Text, selectObjectBox.Text, usrButton.Text, Convert.ToInt32(selectTimeBox.Text));
@@ -180,7 +173,7 @@ namespace Sport_Application
                                    $"AND Дата BETWEEN CONVERT (datetime, '{startDate}') AND CONVERT (datetime, '{finishDate}')) " +
                                    $"SELECT @sum";
 
-            SqlConnection connectdb = new SqlConnection(connectionString); 
+            SqlConnection connectdb = new SqlConnection(stud.Connection); 
 
             SqlCommand commanddb = new SqlCommand(hourssemquery, connectdb);
 
@@ -287,17 +280,10 @@ namespace Sport_Application
             inputBox.Text = "";
         }
 
-        private void selectTypeBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            inputBox.Enabled = true;
-            inputBox.Text = "";
-        }
-
         private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
             try
             {
-
                 string idCard = serialPort1.ReadLine();
 
                 int startIndex = idCard.IndexOf("[") + 1;
@@ -306,7 +292,7 @@ namespace Sport_Application
 
                 idCard = idCard.Substring(startIndex, endIndex - startIndex);
 
-                SqlConnection connectdb = new SqlConnection(connectionString);
+                SqlConnection connectdb = new SqlConnection(stud.Connection);
 
                 string studnumbquery = $"SELECT СтудНомер FROM Студенты WHERE СтудНомер2 = '{idCard}'";
 
@@ -322,19 +308,25 @@ namespace Sport_Application
                         {
                             inputBox.Text = ((string)commanddb.ExecuteScalar());
                         }));
-
                     }).Start();
                 }
                 else
                 {
+                    serialPort1.Close();
+                    MessageBox.Show("ID студенческого билета не зарегистрировано, зарегистрируйте ID или введите номер студенческого билета вручную!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     IDADD idAdd = new IDADD();
                     idAdd.ShowDialog();
+
+                    new Thread(() =>
+                    {
+                        Invoke((MethodInvoker)(() =>
+                        {
+                            handInputButton.Checked = true;
+                        }));
+                    }).Start();
+
+                    this.inputBox.TextChanged += this.inputBox_TextChanged;
                 }
-                
-                this.inputBox.TextChanged += this.inputBox_TextChanged;
-
-                connectdb.Close();
-
                 }
             catch { }
         }
@@ -343,8 +335,12 @@ namespace Sport_Application
         private void scannerButton1_CheckedChanged(object sender, EventArgs e)
         {
             label1.Text = "Приложите карту к устройству ввода";
+            inputBox.Enabled = false;
             COM3();
             inputBox.Text = "";
+            studentInfoBox.Text = "";
+            allHoursBox.Text = "";
+            hoursObjectBox.Text = "";
         }
 
         private void handInputButton_CheckedChanged(object sender, EventArgs e)
@@ -352,6 +348,9 @@ namespace Sport_Application
             serialPort1.Close();
             label1.Text = "  Введите № Студенческого билета";
             inputBox.Text = "";
+            allHoursBox.Text = "";
+            hoursObjectBox.Text = "";
+            inputBox.Enabled = true;
         }
 
         private void skillUpButton_CheckedChanged(object sender, EventArgs e)
@@ -422,9 +421,17 @@ namespace Sport_Application
         private void scannerButton2_CheckedChanged(object sender, EventArgs e)
         {
             label1.Text = "Приложите карту к устройству ввода";
+            inputBox.Enabled = false;
             COM8();
             inputBox.Text = "";
             studentInfoBox.Text = "";
+            allHoursBox.Text = "";
+            hoursObjectBox.Text = "";
+        }
+
+        private void selectTypeBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            panelTypeInput.Visible = true;
         }
     }
 }

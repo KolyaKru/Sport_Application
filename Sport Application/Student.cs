@@ -20,66 +20,31 @@ namespace Sport_Application
         //                    "Initial Catalog = sportapp;" +
         //                    "User Id = sportapp;" +
         //                    "Password = 2eZfa4mSCrnx";
-        string connectionString = @"Data Source=TOSHIBA;" +
+
+        public string Connection 
+        {
+           get
+            {
+                string connectionString = @"Data Source=TOSHIBA;" +
                     "Integrated Security = SSPI;" +
                     "Initial Catalog = sportapp";
+                return connectionString;
+            }
+        }
 
-        private string id;
-        private string obj;
-        private int timers;
-        private string ysr;
-        private string naprav;
         public DataSet Dst
         {
             get { return dst; }
         }
 
-        public string ID
-        {
-            get { return id; }
-        }
-
-        public string Obj
-        {
-            get { return obj; }
-        }
-
-        public int Time
-        {
-            get { return timers; }
-        }
-        public string Ysr
-        {
-            get { return ysr; }
-        }
-        public string Naprav
-        {
-            get { return naprav; }
-        }
         public Student() { }
-        public Student(string id)
-        {
-            this.id = id;
-        }
-        public Student(string id, string obj)
-        {
-            this.id = id;
-            this.obj = obj;
-        }
-        public Student(string id, string naprav, string obj, string ysr, int time)
-        {
-            this.id = id;
-            this.obj = obj;
-            this.timers = time;
-            this.ysr = ysr;
-            this.naprav = naprav;
-        }
+
         public void connectStudent(string c, string a)
         {
             try
             {
                 dst.Clear();
-                adapter = new SqlDataAdapter(c, connectionString);
+                adapter = new SqlDataAdapter(c, Connection);
                 adapter.Fill(dst, a);
             }
             catch (SqlException ex)
@@ -120,7 +85,7 @@ namespace Sport_Application
                                 $"AND Дата BETWEEN CONVERT (datetime, '{startDate}') AND CONVERT (datetime, '{finishDate}') " +
                                 $"AND Объект = '{obj}'";
 
-            SqlConnection connectdb = new SqlConnection(connectionString);
+            SqlConnection connectdb = new SqlConnection(Connection);
 
             connectdb.Open();
 
@@ -160,25 +125,11 @@ namespace Sport_Application
             }
         }
 
-        private void connectJournal(string c, string a)
-        {
-            try
-            {
-                dstJournal.Clear();
-                adapter = new SqlDataAdapter(c, connectionString);
-                adapter.Fill(dstJournal, a);
-            }
-            catch (SqlException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
         public void Insert(string numstud, string way, string obj, string usr, int hours)
         {
             try
             {
-                SqlConnection connectdb = new SqlConnection(connectionString);
+                SqlConnection connectdb = new SqlConnection(Connection);
 
                 string inserthours = $"INSERT INTO Дневник(СтудНомер, Дата, Направление, Объект, УСР, ОтрабЧасы) " +
                     $"VALUES('{numstud}', CONVERT (datetime, '{DateTime.Now}'), '{way}', " +
@@ -198,7 +149,7 @@ namespace Sport_Application
         }
         public void InsertClient(string number, string id, string name, string group)
         {
-            SqlConnection connectdb = new SqlConnection(connectionString);
+            SqlConnection connectdb = new SqlConnection(Connection);
 
             connectdb.Open();
 
@@ -231,7 +182,7 @@ namespace Sport_Application
 
         public void InsertID(string id, string number)
         {
-            SqlConnection connectdb = new SqlConnection(connectionString);
+            SqlConnection connectdb = new SqlConnection(Connection);
 
             string checkquery = $"SELECT COUNT(СтудНомер) FROM Студенты WHERE СтудНомер = '{number}'";
 
@@ -239,7 +190,7 @@ namespace Sport_Application
 
             SqlCommand checkcommand = new SqlCommand(checkquery, connectdb);
 
-            if (checkcommand.ExecuteScalar() != null)
+            if (Convert.ToInt32(checkcommand.ExecuteScalar()) != 0)
             {
                 string com = $"UPDATE Студенты SET СтудНомер2 = '{id}' WHERE СтудНомер = '{number}'";
 
@@ -255,16 +206,6 @@ namespace Sport_Application
             {
                 connectdb.Close();
                 MessageBox.Show("Проверьте номер студенческого билета \nВозможно такой студент не зарегестрирован!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        public void Check(string s)
-        {
-            if (Dst.Tables[s].Rows.Count == 0)
-            {
-                DataRow row = Dst.Tables[s].NewRow();
-                row[0] = 0;
-                Dst.Tables[s].Rows.Add(row);
             }
         }
     }

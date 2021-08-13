@@ -18,10 +18,6 @@ namespace Sport_Application
 {
     public partial class StudentADD : Form
     {
-        string connectionString = @"Data Source=TOSHIBA;" +
-                    "Integrated Security = SSPI;" +
-                    "Initial Catalog = sportapp";
-
         Student stud = new Student();
 
         public StudentADD()
@@ -99,15 +95,16 @@ namespace Sport_Application
             {
                 groupNumberBox.Items.Add(stud.Dst.Tables["Group"].Rows[i][1].ToString());
             }
-
             passwordBox.PasswordChar = '*';
         }
 
         private void addStudentButton_Click(object sender, EventArgs e)
         {
-            stud.InsertClient(numberBox.Text, idBox.Text, nameBox.Text, groupNumberBox.Text);
-            serialPort1.Close();
-            this.Close();
+            try
+            {
+                stud.InsertClient(numberBox.Text, idBox.Text, nameBox.Text, groupNumberBox.Text);
+            }
+            catch { }
         }
 
         private void numberBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -115,13 +112,12 @@ namespace Sport_Application
             e.KeyChar = char.ToUpper(e.KeyChar);
         }
 
-        private void selectObjectBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void groupNumberBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             for (int i = 0; i < stud.Dst.Tables["Group"].Rows.Count; i++)
             {
                 if (groupNumberBox.Text == stud.Dst.Tables["Group"].Rows[i][1].ToString())
                 {
-                    
                     addStudentButton.Enabled = true;
                 }
             }
@@ -167,7 +163,7 @@ namespace Sport_Application
 
                 }).Start();
 
-                SqlConnection connectdb = new SqlConnection(connectionString);
+                SqlConnection connectdb = new SqlConnection(stud.Connection);
 
                 string com = $"SELECT СтудНомер FROM Студенты WHERE СтудНомер2 = '{idCard}'";
 
@@ -179,55 +175,19 @@ namespace Sport_Application
                 {
                     Invoke((MethodInvoker)(() =>
                     {
-                        numberBox.Text = ((string)command.ExecuteScalar());
+                       numberBox.Text = ((string)command.ExecuteScalar());
                     }));
 
                 }).Start();
-
-                this.numberBox.TextChanged += this.numberBox_TextChanged;
-
-                connectdb.Close();
             }
             catch { }
-        }
-
-        private void numberBox_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                SqlConnection connectdb = new SqlConnection(connectionString);
-
-                string namequery = $"SELECT ФИО_Студ FROM Студенты WHERE СтудНомер = '{numberBox.Text}'";
-
-                SqlCommand commanddb = new SqlCommand(namequery, connectdb);
-
-                connectdb.Open();
-
-                nameBox.Text = ((string)commanddb.ExecuteScalar());
-
-                connectdb.Close();
-
-                string numbgroupquery = $"SELECT Группа FROM Студенты join Группы ON Студенты.КодГруппы = Группы.КодГруппы WHERE СтудНомер = '{numberBox.Text}'";
-
-                connectdb.Open();
-
-                SqlCommand command1 = new SqlCommand(numbgroupquery, connectdb);
-
-                groupNumberBox.Text = ((string)command1.ExecuteScalar());
-
-                numberBox.TextChanged += numberBox_TextChanged;
-
-                connectdb.Close();
-            }
-
-            catch { }
-
         }
 
         private void scannerButton2_Click(object sender, EventArgs e)
         {
             try
             {
+                numberBox.Enabled = false;
                 if (COM8())
                 {
                     MessageBox.Show("Приложите карту к устройству ввода");
@@ -242,6 +202,7 @@ namespace Sport_Application
         {
             try
             {
+                numberBox.Enabled = false;
                 if (COM3())
                 {
                     MessageBox.Show("Приложите карту к устройству ввода");
@@ -258,9 +219,14 @@ namespace Sport_Application
             this.Close();
         }
 
-        private void minimizeBox_Click(object sender, EventArgs e)
+        private void handButton_Click(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Minimized;
+            serialPort1.Close();
+            MessageBox.Show("Введите № Студенческого билета");
+            numberBox.Text = "";
+            groupNumberBox.Text = "";
+            nameBox.Text = "";
+            numberBox.Enabled = true;
         }
     }
 }
