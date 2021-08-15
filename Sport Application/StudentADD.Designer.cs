@@ -48,6 +48,7 @@
             this.scannerButton1 = new System.Windows.Forms.RadioButton();
             this.closeBox = new System.Windows.Forms.PictureBox();
             this.handButton = new System.Windows.Forms.RadioButton();
+            this.passwordLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.closeBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,11 +66,11 @@
             // 
             this.addStudentButton.Enabled = false;
             this.addStudentButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.addStudentButton.Location = new System.Drawing.Point(195, 290);
+            this.addStudentButton.Location = new System.Drawing.Point(163, 328);
             this.addStudentButton.Name = "addStudentButton";
-            this.addStudentButton.Size = new System.Drawing.Size(157, 36);
+            this.addStudentButton.Size = new System.Drawing.Size(214, 36);
             this.addStudentButton.TabIndex = 1;
-            this.addStudentButton.Text = "Добавить";
+            this.addStudentButton.Text = "Добавить студента";
             this.addStudentButton.UseVisualStyleBackColor = true;
             this.addStudentButton.Click += new System.EventHandler(this.addStudentButton_Click);
             // 
@@ -77,7 +78,7 @@
             // 
             this.numbStudentLabel.AutoSize = true;
             this.numbStudentLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.numbStudentLabel.Location = new System.Drawing.Point(155, 102);
+            this.numbStudentLabel.Location = new System.Drawing.Point(160, 67);
             this.numbStudentLabel.Name = "numbStudentLabel";
             this.numbStudentLabel.Size = new System.Drawing.Size(237, 24);
             this.numbStudentLabel.TabIndex = 2;
@@ -87,7 +88,7 @@
             // 
             this.nameLabel.AutoSize = true;
             this.nameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.nameLabel.Location = new System.Drawing.Point(238, 158);
+            this.nameLabel.Location = new System.Drawing.Point(243, 123);
             this.nameLabel.Name = "nameLabel";
             this.nameLabel.Size = new System.Drawing.Size(54, 24);
             this.nameLabel.TabIndex = 3;
@@ -97,7 +98,7 @@
             // 
             this.groupLabel.AutoSize = true;
             this.groupLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupLabel.Location = new System.Drawing.Point(238, 214);
+            this.groupLabel.Location = new System.Drawing.Point(243, 179);
             this.groupLabel.Name = "groupLabel";
             this.groupLabel.Size = new System.Drawing.Size(73, 24);
             this.groupLabel.TabIndex = 4;
@@ -114,9 +115,8 @@
             // 
             // numberBox
             // 
-            this.numberBox.Enabled = false;
             this.numberBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.numberBox.Location = new System.Drawing.Point(132, 129);
+            this.numberBox.Location = new System.Drawing.Point(137, 94);
             this.numberBox.Name = "numberBox";
             this.numberBox.Size = new System.Drawing.Size(276, 26);
             this.numberBox.TabIndex = 6;
@@ -126,7 +126,7 @@
             // nameBox
             // 
             this.nameBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.nameBox.Location = new System.Drawing.Point(132, 185);
+            this.nameBox.Location = new System.Drawing.Point(137, 150);
             this.nameBox.Name = "nameBox";
             this.nameBox.Size = new System.Drawing.Size(276, 26);
             this.nameBox.TabIndex = 7;
@@ -140,7 +140,7 @@
             this.groupNumberBox.Enabled = false;
             this.groupNumberBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupNumberBox.FormattingEnabled = true;
-            this.groupNumberBox.Location = new System.Drawing.Point(132, 241);
+            this.groupNumberBox.Location = new System.Drawing.Point(137, 206);
             this.groupNumberBox.Name = "groupNumberBox";
             this.groupNumberBox.Size = new System.Drawing.Size(276, 28);
             this.groupNumberBox.TabIndex = 9;
@@ -150,7 +150,7 @@
             // 
             this.scannerButton2.AutoSize = true;
             this.scannerButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.scannerButton2.Location = new System.Drawing.Point(12, 42);
+            this.scannerButton2.Location = new System.Drawing.Point(403, 36);
             this.scannerButton2.Name = "scannerButton2";
             this.scannerButton2.Size = new System.Drawing.Size(128, 28);
             this.scannerButton2.TabIndex = 10;
@@ -163,7 +163,7 @@
             // 
             this.idBox.Enabled = false;
             this.idBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.idBox.Location = new System.Drawing.Point(132, 73);
+            this.idBox.Location = new System.Drawing.Point(133, 296);
             this.idBox.Name = "idBox";
             this.idBox.Size = new System.Drawing.Size(276, 26);
             this.idBox.TabIndex = 11;
@@ -172,20 +172,20 @@
             // idButton
             // 
             this.idButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.idButton.Location = new System.Drawing.Point(414, 71);
+            this.idButton.Location = new System.Drawing.Point(383, 240);
             this.idButton.Name = "idButton";
-            this.idButton.Size = new System.Drawing.Size(25, 26);
+            this.idButton.Size = new System.Drawing.Size(148, 26);
             this.idButton.TabIndex = 12;
-            this.idButton.Text = "?";
+            this.idButton.Text = "Просмотреть ID ";
             this.idButton.UseVisualStyleBackColor = true;
             this.idButton.Click += new System.EventHandler(this.idButton_Click);
             // 
             // passwordBox
             // 
             this.passwordBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.passwordBox.Location = new System.Drawing.Point(445, 72);
+            this.passwordBox.Location = new System.Drawing.Point(172, 240);
             this.passwordBox.Name = "passwordBox";
-            this.passwordBox.Size = new System.Drawing.Size(86, 26);
+            this.passwordBox.Size = new System.Drawing.Size(205, 26);
             this.passwordBox.TabIndex = 13;
             this.passwordBox.Visible = false;
             this.passwordBox.TextChanged += new System.EventHandler(this.passwordBox_TextChanged);
@@ -198,18 +198,17 @@
             // 
             this.idStudentLabel.AutoSize = true;
             this.idStudentLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.idStudentLabel.Location = new System.Drawing.Point(155, 46);
+            this.idStudentLabel.Location = new System.Drawing.Point(159, 269);
             this.idStudentLabel.Name = "idStudentLabel";
             this.idStudentLabel.Size = new System.Drawing.Size(234, 24);
             this.idStudentLabel.TabIndex = 14;
             this.idStudentLabel.Text = "ID студенческого билета";
-            this.idStudentLabel.Visible = false;
             // 
             // scannerButton1
             // 
             this.scannerButton1.AutoSize = true;
             this.scannerButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.scannerButton1.Location = new System.Drawing.Point(12, 12);
+            this.scannerButton1.Location = new System.Drawing.Point(199, 36);
             this.scannerButton1.Name = "scannerButton1";
             this.scannerButton1.Size = new System.Drawing.Size(128, 28);
             this.scannerButton1.TabIndex = 15;
@@ -233,7 +232,7 @@
             // 
             this.handButton.AutoSize = true;
             this.handButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.handButton.Location = new System.Drawing.Point(12, 72);
+            this.handButton.Location = new System.Drawing.Point(12, 36);
             this.handButton.Name = "handButton";
             this.handButton.Size = new System.Drawing.Size(104, 28);
             this.handButton.TabIndex = 17;
@@ -242,11 +241,23 @@
             this.handButton.UseVisualStyleBackColor = true;
             this.handButton.Click += new System.EventHandler(this.handButton_Click);
             // 
+            // passwordLabel
+            // 
+            this.passwordLabel.AutoSize = true;
+            this.passwordLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.passwordLabel.Location = new System.Drawing.Point(17, 243);
+            this.passwordLabel.Name = "passwordLabel";
+            this.passwordLabel.Size = new System.Drawing.Size(149, 20);
+            this.passwordLabel.TabIndex = 18;
+            this.passwordLabel.Text = "Введите пароль";
+            this.passwordLabel.Visible = false;
+            // 
             // StudentADD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(543, 339);
+            this.ClientSize = new System.Drawing.Size(543, 375);
+            this.Controls.Add(this.passwordLabel);
             this.Controls.Add(this.handButton);
             this.Controls.Add(this.closeBox);
             this.Controls.Add(this.scannerButton1);
@@ -296,5 +307,6 @@
         private System.Windows.Forms.RadioButton scannerButton1;
         private System.Windows.Forms.PictureBox closeBox;
         private System.Windows.Forms.RadioButton handButton;
+        private System.Windows.Forms.Label passwordLabel;
     }
 }

@@ -153,7 +153,7 @@ namespace Sport_Application
 
             connectdb.Open();
 
-            string checkquery = $"Select COUNT(СтудНомер) FROM Студенты Where СтудНомер = '{number}' OR ФИО_Студ = '{name}'";
+            string checkquery = $"Select COUNT(СтудНомер) FROM Студенты Where СтудНомер = '{number}' OR ФИО_Студ = '{name}' OR СтудНомер2 = '{id}'";
 
             SqlCommand checkcommand = new SqlCommand(checkquery, connectdb);
 

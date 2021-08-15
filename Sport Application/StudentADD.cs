@@ -23,6 +23,7 @@ namespace Sport_Application
         public StudentADD()
         {
             InitializeComponent();
+            idStudentLabel.ForeColor = Color.Red;
         }
 
         private bool COM8()
@@ -131,7 +132,7 @@ namespace Sport_Application
         private void idButton_Click(object sender, EventArgs e)
         {
             passwordBox.Visible = true;
-            MessageBox.Show("Введите пароль в поле справа от кнопки <<?>>");
+            passwordLabel.Visible = true;
         }
 
         private void passwordBox_TextChanged(object sender, EventArgs e)
@@ -139,7 +140,6 @@ namespace Sport_Application
             if (passwordBox.Text == "12345")
             {
                 idBox.Visible = true;
-                idStudentLabel.Visible = true;
             }
         }
 
@@ -163,22 +163,7 @@ namespace Sport_Application
 
                 }).Start();
 
-                SqlConnection connectdb = new SqlConnection(stud.Connection);
-
-                string com = $"SELECT СтудНомер FROM Студенты WHERE СтудНомер2 = '{idCard}'";
-
-                SqlCommand command = new SqlCommand(com, connectdb);
-
-                connectdb.Open();
-
-                new Thread(() =>
-                {
-                    Invoke((MethodInvoker)(() =>
-                    {
-                       numberBox.Text = ((string)command.ExecuteScalar());
-                    }));
-
-                }).Start();
+                idStudentLabel.ForeColor = Color.Green;
             }
             catch { }
         }
@@ -187,7 +172,6 @@ namespace Sport_Application
         {
             try
             {
-                numberBox.Enabled = false;
                 if (COM8())
                 {
                     MessageBox.Show("Приложите карту к устройству ввода");
@@ -202,7 +186,6 @@ namespace Sport_Application
         {
             try
             {
-                numberBox.Enabled = false;
                 if (COM3())
                 {
                     MessageBox.Show("Приложите карту к устройству ввода");
@@ -226,7 +209,6 @@ namespace Sport_Application
             numberBox.Text = "";
             groupNumberBox.Text = "";
             nameBox.Text = "";
-            numberBox.Enabled = true;
         }
     }
 }
