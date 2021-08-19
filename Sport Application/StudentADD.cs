@@ -103,7 +103,14 @@ namespace Sport_Application
         {
             try
             {
-                stud.InsertClient(numberBox.Text, idBox.Text, nameBox.Text, groupNumberBox.Text);
+                if (scannerButton1.Checked || scannerButton2.Checked)
+                {
+                    stud.InsertClientID(numberBox.Text, idBox.Text, nameBox.Text, groupNumberBox.Text);
+                }
+                else
+                {
+                    stud.InsertClient(numberBox.Text, nameBox.Text, groupNumberBox.Text);
+                }
             }
             catch { }
         }
@@ -209,6 +216,8 @@ namespace Sport_Application
             numberBox.Text = "";
             groupNumberBox.Text = "";
             nameBox.Text = "";
+            idBox.Text = "";
+            idStudentLabel.ForeColor = Color.Red;
         }
     }
 }

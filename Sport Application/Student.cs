@@ -15,7 +15,7 @@ namespace Sport_Application
     {
         DataSet dst = new DataSet();
         SqlDataAdapter adapter;
-        DataSet dstJournal = new DataSet();
+
         //string connectionString = @"Data Source=db1.net.pvbc;" +
         //                    "Initial Catalog = sportapp;" +
         //                    "User Id = sportapp;" +
@@ -147,37 +147,78 @@ namespace Sport_Application
             }
             catch {}
         }
-        public void InsertClient(string number, string id, string name, string group)
+        public void InsertClientID(string number, string id, string name, string group)
         {
-            SqlConnection connectdb = new SqlConnection(Connection);
-
-            connectdb.Open();
-
-            string checkquery = $"Select COUNT(СтудНомер) FROM Студенты Where СтудНомер = '{number}' OR ФИО_Студ = '{name}' OR СтудНомер2 = '{id}'";
-
-            SqlCommand checkcommand = new SqlCommand(checkquery, connectdb);
-
-            if (Convert.ToInt32(checkcommand.ExecuteScalar()) == 0)
+            try
             {
-                string addstudentquery = $"DECLARE @numb nvarchar (10) "+
-                                         $"SET @numb = (SELECT КодГруппы From Группы Where Группа = '{group}') "+
-                                         $"INSERT INTO Студенты(СтудНомер, СтудНомер2, ФИО_Студ, КодГруппы) "+
-                                         $"VALUES('{number}', '{id}', '{name}', CONVERT(int, @numb))";
+                SqlConnection connectdb = new SqlConnection(Connection);
 
-                SqlCommand addcommand = new SqlCommand(addstudentquery, connectdb);
+                connectdb.Open();
 
-                addcommand.ExecuteNonQuery();
+                string checkquery = $"Select COUNT(СтудНомер) FROM Студенты Where СтудНомер = '{number}' OR ФИО_Студ = '{name}' OR СтудНомер2 = '{id}'";
 
-                connectdb.Close();
+                SqlCommand checkcommand = new SqlCommand(checkquery, connectdb);
 
-                MessageBox.Show("Добавление студента прошло успешно!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (Convert.ToInt32(checkcommand.ExecuteScalar()) == 0)
+                {
+                    string addstudentquery = $"DECLARE @numb nvarchar (10) " +
+                                             $"SET @numb = (SELECT КодГруппы From Группы Where Группа = '{group}') " +
+                                             $"INSERT INTO Студенты(СтудНомер, СтудНомер2, ФИО_Студ, КодГруппы) " +
+                                             $"VALUES('{number}', '{id}', '{name}', CONVERT(int, @numb))";
 
+                    SqlCommand addcommand = new SqlCommand(addstudentquery, connectdb);
+
+                    addcommand.ExecuteNonQuery();
+
+                    connectdb.Close();
+
+                    MessageBox.Show("Добавление студента прошло успешно!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                else
+                {
+                    connectdb.Close();
+                    MessageBox.Show("Проверьте введённые данные.\nВозможно такой студент уже существует!\nЛибо номер ID студенческого билета не получен.", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            else
+            catch {}
+        }
+
+        public void InsertClient(string number, string name, string group)
+        {
+            try
             {
-                connectdb.Close();
-                MessageBox.Show("Проверьте введённые данные.\nВозможно такой студент уже существует!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                SqlConnection connectdb = new SqlConnection(Connection);
+
+                connectdb.Open();
+
+                string checkquery = $"Select COUNT(СтудНомер) FROM Студенты Where СтудНомер = '{number}' OR ФИО_Студ = '{name}'";
+
+                SqlCommand checkcommand = new SqlCommand(checkquery, connectdb);
+
+                if (Convert.ToInt32(checkcommand.ExecuteScalar()) == 0)
+                {
+                    string addstudentquery = $"DECLARE @numb nvarchar (10) " +
+                                             $"SET @numb = (SELECT КодГруппы From Группы Where Группа = '{group}') " +
+                                             $"INSERT INTO Студенты(СтудНомер, ФИО_Студ, КодГруппы) " +
+                                             $"VALUES('{number}', '{name}', CONVERT(int, @numb))";
+
+                    SqlCommand addcommand = new SqlCommand(addstudentquery, connectdb);
+
+                    addcommand.ExecuteNonQuery();
+
+                    connectdb.Close();
+
+                    MessageBox.Show("Добавление студента прошло успешно!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                else
+                {
+                    connectdb.Close();
+                    MessageBox.Show("Проверьте введённые данные.\nВозможно такой студент уже существует!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
+            catch { }
         }
 
         public void InsertID(string id, string number)
@@ -205,7 +246,7 @@ namespace Sport_Application
             else
             {
                 connectdb.Close();
-                MessageBox.Show("Проверьте номер студенческого билета \nВозможно такой студент не зарегестрирован!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Проверьте номер студенческого билета \nВозможно такой студент не зарегестрирован!\nЛибо номер ID студенческого билета не получен.", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
